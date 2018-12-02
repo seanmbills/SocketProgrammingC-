@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocketProgramming
+namespace SocketProgrammingC
 {
     class Server
     {
@@ -35,42 +35,6 @@ namespace SocketProgramming
             set { myCollege = value; }
         }
 
-        private class TimeTracker
-        {
-            private DateTime timeOne;
-            private DateTime timeTwo;
-            private DateTime timeThree;
-            private int withdrawals = 1;
-
-            private int accountAccesses = 0;
-            public int AccountAccesses
-            {
-                get { return accountAccesses; }
-            }
-            public void UpdateAccountAccesses()
-            {
-                accountAccesses++;
-            }
-            public void UpdateTimes()
-            {
-                if (timeOne == DateTime.MinValue)
-                {
-                    timeOne = DateTime.Now;
-                    UpdateAccountAccesses();
-                } else if (timeTwo == DateTime.MinValue)
-                {
-                    timeTwo = DateTime.Now;
-                    UpdateAccountAccesses();
-                } else if (timeThree == DateTime.MinValue)
-                {
-                    timeThree = DateTime.Now;
-                    UpdateAccountAccesses();
-                } else
-                {
-
-                }
-            }
-        }
 
         public static void Main(string[] args)
         {
