@@ -10,31 +10,7 @@ namespace SocketProgrammingC
 
         private int clientSocketNum;        /* the unique socket descripter # */
 
-        private int mySavings;
-        public int MySavings
-        {
-            get { return mySavings; }
-            set { mySavings = value; }
-        }
-        private int myChecking;
-        public int MyChecking
-        {
-            get { return myChecking; }
-            set { myChecking = value; }
-        }
-        private int myRetirement;
-        public int MyRetirement
-        {
-            get { return myRetirement; }
-            set { myRetirement = value; }
-        }
-        private int myCollege;
-        public int MyCollege
-        {
-            get { return myCollege; }
-            set { myCollege = value; }
-        }
-
+        private User[] users;
 
         public static void Main(string[] args)
         {

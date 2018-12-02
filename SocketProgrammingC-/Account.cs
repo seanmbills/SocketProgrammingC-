@@ -12,63 +12,25 @@ namespace SocketProgrammingC
             set { balance = value; }
         }
 
-        private AccountType name;
+        //private AccountType name;
+        private string name;
         public string Name
         {
-            get { return GetNameValue(name); }
-            set { name = GetAccountType(value); }
+            get { return Name; }
+            set { name = value; }
         }
 
-        public Account()
+        private readonly int accountId;
+        public int AccountId
         {
-            balance = int.MaxValue;
+            get { return accountId; }
         }
-        public Account(int _balance)
+
+        public Account(int _balance, string _name, int accountId)
         {
             this.balance = _balance;
-        }
-        public Account(int _balance, string _name)
-        {
-            this.balance = _balance;
-            Name = _name;
-        }
-
-        private string GetNameValue(AccountType nameType)
-        {
-            switch (nameType)
-            {
-                case AccountType.Savings:
-                    return "Savings";
-                case AccountType.Checking:
-                    return "Checking";
-                case AccountType.Retirement:
-                    return "Retirement";
-                case AccountType.College:
-                    return "College";
-                case AccountType.Other:
-                    return "Other";
-                default:
-                    return "None";
-            }
-        }
-
-        private AccountType GetAccountType(string _name)
-        {
-            switch (_name)
-            {
-                case "Savings":
-                    return AccountType.Savings;
-                case "Checking":
-                    return AccountType.Checking;
-                case "Retirement":
-                    return AccountType.Retirement;
-                case "College":
-                    return AccountType.College;
-                case "Other":
-                    return AccountType.Other;
-                default:
-                    return AccountType.None;
-            }
+            this.name = _name;
+            this.accountId = accountId;
         }
     }
 }
