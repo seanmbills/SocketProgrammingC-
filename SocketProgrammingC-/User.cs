@@ -39,10 +39,18 @@ namespace SocketProgrammingC
         public bool RemoveAccount(string username, string password,
             int accountId)
         {
+            bool found = false;
             if (this.username == username && this.password == password)
             {
-                accounts.RemoveAll(x => x.AccountId == accountId);
-                return true;
+                foreach (var acct in accounts)
+                {
+                    if (acct.AccountId == accountId)
+                    {
+                        accounts.Remove(acct);
+                        found = true;
+                    }
+                }
+                return found;
             }
             return false;
         }

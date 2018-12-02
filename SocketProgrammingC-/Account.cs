@@ -3,7 +3,7 @@ namespace SocketProgrammingC
 {
     public class Account
     {
-        TimeTracker timeTracker = new TimeTracker();
+        public TimeTracker timeTracker = new TimeTracker();
 
         private int balance;
         public int Balance
