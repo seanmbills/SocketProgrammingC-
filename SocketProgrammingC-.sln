@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingC-", "SocketProgrammingC-\SocketProgrammingC-.csproj", "{FDA7AF37-B004-4148-A246-A87CB05CD8A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingTests", "SocketProgrammingTests\SocketProgrammingTests.csproj", "{EB4A5456-0678-4B34-91F6-E91278BCEDB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Debug|x86.Build.0 = Debug|x86
 		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Release|x86.ActiveCfg = Release|x86
 		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Release|x86.Build.0 = Release|x86
+		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Debug|x86.Build.0 = Debug|Any CPU
+		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Release|x86.ActiveCfg = Release|Any CPU
+		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

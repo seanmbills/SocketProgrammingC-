@@ -63,7 +63,7 @@ namespace SocketProgrammingC
             return found;
         }
 
-        private bool TransferFunds(Account fromAcct, Account toAcct, double amount)
+        public bool TransferFunds(Account fromAcct, Account toAcct, double amount)
         {
             if (amount < 0) return false;
             if (fromAcct == null || toAcct == null) return false;
@@ -83,7 +83,7 @@ namespace SocketProgrammingC
             return TransferFunds(fromAcct, toAcct, amount);
         }
 
-        private Account FindAccountFromId(int id)
+        public Account FindAccountFromId(int id)
         {
             foreach (var acct in accounts)
             {
