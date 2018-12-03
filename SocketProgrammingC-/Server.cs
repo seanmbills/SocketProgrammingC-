@@ -47,9 +47,9 @@ namespace SocketProgrammingC
             string confirmPassword)
         {
             if (password != confirmPassword) return false;
-            bool usernameExists = UsernameTaken(username);
-            if (usernameExists) return false;
-            users.Add(new User(username, password));
+            if (UsernameTaken(username)) return false;
+            User newUser = new User(username, password);
+            users.Add(newUser);
             return true;
         }
 
@@ -57,7 +57,7 @@ namespace SocketProgrammingC
         {
             foreach (var user in users)
             {
-                if (user.Username == username && user.Password == password)
+                if (user.Username == username && user.CheckEqualPasswords(password))
                 {
                     users.Remove(user);
                     return true;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+
 namespace SocketProgrammingC
 {
     public class User
@@ -12,7 +14,7 @@ namespace SocketProgrammingC
         }
 
         private string password;
-        public string Password
+        private string Password
         {
             get { return password; }
             set { password = value; }
@@ -27,7 +29,7 @@ namespace SocketProgrammingC
         public bool AddNewAccount(string username, string password,
             int accountId, string accountName, double accountBalance)
         {
-            if (this.username == username && this.password == password)
+            if (this.username == username && this.password == HashPassword(password))
             {
                 foreach (var acct in accounts)
                 {
@@ -42,7 +44,7 @@ namespace SocketProgrammingC
 
         public bool CloseAccount(string username, string password, int acctId)
         {
-            if (username == this.username && password == this.password)
+            if (username == this.username && HashPassword(password) == this.password)
             {
                 return RemoveAccount(acctId);
             }
@@ -101,11 +103,32 @@ namespace SocketProgrammingC
             return false;
         }
 
+        private string HashPassword(string _password)
+        {
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+
+            var pbkdf2 = new Rfc2898DeriveBytes(_password, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+
+            string savedPasswordHash = Convert.ToBase64String(hashBytes);
+            return savedPasswordHash;
+        }
+
+        public bool CheckEqualPasswords(string checkPassword)
+        {
+            return HashPassword(checkPassword) == password;
+        }
+
         public bool UpdatePassword(string oldPassword, string newPassword)
         {
-            if (oldPassword == password)
+            if (HashPassword(oldPassword) == HashPassword(password))
             {
-                password = newPassword;
+                password = HashPassword(newPassword);
                 return true;
             }
             return false;
@@ -114,7 +137,7 @@ namespace SocketProgrammingC
         public bool UpdateUsername(string oldUsername, string newUsername,
             string password)
         {
-            if (this.password == password && this.username == oldUsername)
+            if (this.password == HashPassword(password) && this.username == oldUsername)
             {
                 Username = newUsername;
                 return true;
@@ -124,7 +147,7 @@ namespace SocketProgrammingC
 
         public User(string username, string password) {
             Username = username;
-            Password = password;
+            Password = HashPassword(password);
         }
     }
 }
