@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace SocketProgrammingC
 {
     public class Account
     {
         private TimeTracker timeTracker = new TimeTracker();
         private readonly User accountOwner;
+
+        private List<AccountAction> historyList = new List<AccountAction>();
 
         private int balance;
         public int Balance

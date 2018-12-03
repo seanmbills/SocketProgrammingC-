@@ -34,7 +34,7 @@ namespace SocketProgrammingC
                     if (acct.AccountId == accountId) return false;
                 }
                 accounts.Add(new Account(accountBalance,
-                    accountName, accountId));
+                    accountName, accountId, this));
                 return true;
             }
             return false;
@@ -63,7 +63,7 @@ namespace SocketProgrammingC
             return found;
         }
 
-        public bool TransferFunds(Account fromAcct, Account toAcct, int amount)
+        private bool TransferFunds(Account fromAcct, Account toAcct, int amount)
         {
             if (amount < 0) return false;
             if (fromAcct == null || toAcct == null) return false;
@@ -76,15 +76,9 @@ namespace SocketProgrammingC
 
         public bool TransferFunds(int fromAcctId, int toAcctId, int amount)
         {
-            if (amount < 0) return false;
-            if (!AccountExists(fromAcctId) || !AccountExists(toAcctId)) return false;
             Account fromAcct = FindAccountFromId(fromAcctId);
             Account toAcct = FindAccountFromId(toAcctId);
-            if (fromAcct == null || toAcct == null) return false;
-            bool successfulWithdraw = fromAcct.WithdrawFromAccount(amount);
-            if (!successfulWithdraw) return false;
-            toAcct.DepositToAccount(amount);
-            return true;
+            return TransferFunds(fromAcct, toAcct, amount);
         }
 
         private Account FindAccountFromId(int id)

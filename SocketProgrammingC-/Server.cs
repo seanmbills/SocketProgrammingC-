@@ -12,6 +12,17 @@ namespace SocketProgrammingC
 
         private User[] users;
 
+        private bool TransferFunds(User fromUser, Account fromAcct,
+            User toUser, Account toAcct)
+        {
+
+        }
+
+        public bool TransferFunds(int acctIdFrom, int acctIdTo, int amount)
+        {
+            foreach 
+        }
+
         public static void Main(string[] args)
         {
 
