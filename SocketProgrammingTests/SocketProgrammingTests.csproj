@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TimeTrackerTests.cs" />
+    <Compile Include="TransactionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
