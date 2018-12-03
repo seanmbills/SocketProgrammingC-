@@ -37,7 +37,7 @@
     <Compile Include="TimeTracker.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="AccountAction.cs" />
+    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

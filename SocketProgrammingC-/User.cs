@@ -25,7 +25,7 @@ namespace SocketProgrammingC
         }
 
         public bool AddNewAccount(string username, string password,
-            int accountId, string accountName, int accountBalance)
+            int accountId, string accountName, double accountBalance)
         {
             if (this.username == username && this.password == password)
             {
@@ -63,18 +63,20 @@ namespace SocketProgrammingC
             return found;
         }
 
-        private bool TransferFunds(Account fromAcct, Account toAcct, int amount)
+        private bool TransferFunds(Account fromAcct, Account toAcct, double amount)
         {
             if (amount < 0) return false;
             if (fromAcct == null || toAcct == null) return false;
             if (amount > fromAcct.Balance) return false;
-            bool successfulWithdraw = fromAcct.WithdrawFromAccount(amount);
+            bool successfulWithdraw = fromAcct.WithdrawFromAccount(amount, true);
             if (!successfulWithdraw) return false;
-            toAcct.DepositToAccount(amount);
+            toAcct.DepositToAccount(amount, true);
+            fromAcct.AddTransferTransaction(amount, toAcct.AccountId, "to");
+            toAcct.AddTransferTransaction(amount, fromAcct.AccountId, "from");
             return true;
         }
 
-        public bool TransferFunds(int fromAcctId, int toAcctId, int amount)
+        public bool TransferFunds(int fromAcctId, int toAcctId, double amount)
         {
             Account fromAcct = FindAccountFromId(fromAcctId);
             Account toAcct = FindAccountFromId(toAcctId);

@@ -8,10 +8,10 @@ namespace SocketProgrammingC
         private TimeTracker timeTracker = new TimeTracker();
         private readonly User accountOwner;
 
-        private List<AccountAction> historyList = new List<AccountAction>();
+        private List<Transaction> historyList = new List<Transaction>();
 
-        private int balance;
-        public int Balance
+        private double balance;
+        public double Balance
         {
             get { return balance; }
             set { balance = value; }
@@ -49,7 +49,7 @@ namespace SocketProgrammingC
             get { return accountId; }
         }
 
-        public Account(int _balance, string _name, int accountId, User accountOwner)
+        public Account(double _balance, string _name, int accountId, User accountOwner)
         {
             this.balance = _balance;
             this.name = _name;
@@ -57,7 +57,7 @@ namespace SocketProgrammingC
             this.accountOwner = accountOwner;
         }
 
-        public bool WithdrawFromAccount(int amount)
+        public bool WithdrawFromAccount(double amount, bool transfer)
         {
             if (amount > this.balance) return false;
             if (amount < 0) return false;
@@ -74,13 +74,21 @@ namespace SocketProgrammingC
                     this.balance -= amount;
                     Withdraw = true;
                 }
+                if (Withdraw && !transfer) historyList.Add(new Transaction("Withdrawal", amount, DateTime.Now));
                 return withdraw;
             }
         }
 
-        public void DepositToAccount(int amount)
+        public void DepositToAccount(double amount, bool transfer)
         {
             this.balance += amount;
+            if (!transfer)
+                historyList.Add(new Transaction("Deposit", amount, DateTime.Now));
+        }
+
+        public void AddTransferTransaction(double amount, int acctId, string fromTo)
+        {
+            historyList.Add(new Transaction("Transfer", amount, DateTime.Now, acctId, fromTo));
         }
     }
 }
