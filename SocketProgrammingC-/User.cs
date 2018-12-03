@@ -68,7 +68,8 @@ namespace SocketProgrammingC
             if (amount < 0) return false;
             if (fromAcct == null || toAcct == null) return false;
             if (amount > fromAcct.Balance) return false;
-            fromAcct.WithdrawFromAccount(amount);
+            bool successfulWithdraw = fromAcct.WithdrawFromAccount(amount);
+            if (!successfulWithdraw) return false;
             toAcct.DepositToAccount(amount);
             return true;
         }
@@ -80,7 +81,8 @@ namespace SocketProgrammingC
             Account fromAcct = FindAccountFromId(fromAcctId);
             Account toAcct = FindAccountFromId(toAcctId);
             if (fromAcct == null || toAcct == null) return false;
-            fromAcct.WithdrawFromAccount(amount);
+            bool successfulWithdraw = fromAcct.WithdrawFromAccount(amount);
+            if (!successfulWithdraw) return false;
             toAcct.DepositToAccount(amount);
             return true;
         }
