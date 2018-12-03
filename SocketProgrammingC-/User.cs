@@ -18,7 +18,7 @@ namespace SocketProgrammingC
             set { password = value; }
         }
 
-        private List<Account> accounts;
+        private List<Account> accounts = new List<Account>();
         public List<Account> Accounts
         {
             get { return accounts; }
@@ -29,6 +29,10 @@ namespace SocketProgrammingC
         {
             if (this.username == username && this.password == password)
             {
+                foreach (var acct in accounts)
+                {
+                    if (acct.AccountId == accountId) return false;
+                }
                 accounts.Add(new Account(accountBalance,
                     accountName, accountId));
                 return true;
@@ -36,21 +40,65 @@ namespace SocketProgrammingC
             return false;
         }
 
-        public bool RemoveAccount(string username, string password,
-            int accountId)
+        public bool CloseAccount(string username, string password, int acctId)
+        {
+            if (username == this.username && password == this.password)
+            {
+                return RemoveAccount(acctId);
+            }
+            return false;
+        }
+
+        private bool RemoveAccount(int accountId)
         {
             bool found = false;
-            if (this.username == username && this.password == password)
+            foreach (var acct in accounts)
             {
-                foreach (var acct in accounts)
+                if (acct.AccountId == accountId)
                 {
-                    if (acct.AccountId == accountId)
-                    {
-                        accounts.Remove(acct);
-                        found = true;
-                    }
+                    accounts.Remove(acct);
+                    found = true;
                 }
-                return found;
+            }
+            return found;
+        }
+
+        public bool TransferFunds(Account fromAcct, Account toAcct, int amount)
+        {
+            if (amount < 0) return false;
+            if (fromAcct == null || toAcct == null) return false;
+            if (amount > fromAcct.Balance) return false;
+            fromAcct.WithdrawFromAccount(amount);
+            toAcct.DepositToAccount(amount);
+            return true;
+        }
+
+        public bool TransferFunds(int fromAcctId, int toAcctId, int amount)
+        {
+            if (amount < 0) return false;
+            if (!AccountExists(fromAcctId) || !AccountExists(toAcctId)) return false;
+            Account fromAcct = FindAccountFromId(fromAcctId);
+            Account toAcct = FindAccountFromId(toAcctId);
+            if (fromAcct == null || toAcct == null) return false;
+            fromAcct.WithdrawFromAccount(amount);
+            toAcct.DepositToAccount(amount);
+            return true;
+        }
+
+        private Account FindAccountFromId(int id)
+        {
+            foreach (var acct in accounts)
+            {
+                if (acct.AccountId == id) return acct;
+            }
+            return null;
+        }
+
+        private bool AccountExists(int acctId)
+        {
+            foreach (var acct in accounts)
+            {
+                if (acct.AccountId == acctId) return true;
             }
             return false;
         }

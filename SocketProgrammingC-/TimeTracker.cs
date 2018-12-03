@@ -4,42 +4,37 @@ namespace SocketProgrammingC
     public class TimeTracker
     {
         private DateTime timeOne;
+        public DateTime TimeOne
+        {
+            get { return timeOne; }
+        }
+
         private DateTime timeTwo;
+        public DateTime TimeTwo
+        {
+            get { return timeTwo; }
+        }
+
         private DateTime timeThree;
-
-        private bool withdraw = true;
-        public bool Withdraw
+        public DateTime TimeThree
         {
-            get { return withdraw; }
-            set { withdraw = value; }
+            get { return timeThree; }
         }
 
-        private int accountAccesses = 0;
-        public int AccountAccesses
-        {
-            get { return accountAccesses; }
-        }
 
-        public void UpdateAccountAccesses()
-        {
-            accountAccesses++;
-        }
         public void UpdateTimes()
         {
             if (timeOne == DateTime.MinValue)
             {
                 timeOne = DateTime.Now;
-                UpdateAccountAccesses();
             }
             else if (timeTwo == DateTime.MinValue)
             {
                 timeTwo = DateTime.Now;
-                UpdateAccountAccesses();
             }
             else if (timeThree == DateTime.MinValue)
             {
                 timeThree = DateTime.Now;
-                UpdateAccountAccesses();
             }
             else
             {

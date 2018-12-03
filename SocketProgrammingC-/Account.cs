@@ -3,7 +3,7 @@ namespace SocketProgrammingC
 {
     public class Account
     {
-        public TimeTracker timeTracker = new TimeTracker();
+        private TimeTracker timeTracker = new TimeTracker();
 
         private int balance;
         public int Balance
@@ -20,6 +20,24 @@ namespace SocketProgrammingC
             set { name = value; }
         }
 
+        private bool withdraw = true;
+        public bool Withdraw
+        {
+            get { return withdraw; }
+            set { withdraw = value; }
+        }
+
+        private int accountAccesses = 0;
+        public int AccountAccesses
+        {
+            get { return accountAccesses; }
+        }
+
+        public void UpdateAccountAccesses()
+        {
+            accountAccesses++;
+        }
+
         private readonly int accountId;
         public int AccountId
         {
@@ -31,6 +49,32 @@ namespace SocketProgrammingC
             this.balance = _balance;
             this.name = _name;
             this.accountId = accountId;
+        }
+
+        public bool WithdrawFromAccount(int amount)
+        {
+            if (amount > this.balance) return false;
+            if (amount < 0) return false;
+            else
+            {
+                timeTracker.UpdateTimes();
+                UpdateAccountAccesses();
+                if (DateTime.Now.Ticks - timeTracker.TimeOne.Ticks < 60)
+                {
+                    Withdraw = false;
+                }
+                else
+                {
+                    this.balance -= amount;
+                    Withdraw = true;
+                }
+                return withdraw;
+            }
+        }
+
+        public void DepositToAccount(int amount)
+        {
+            this.balance += amount;
         }
     }
 }
