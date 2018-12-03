@@ -63,7 +63,7 @@ namespace SocketProgrammingC
             if (amount < 0) return false;
             else
             {
-                timeTracker.UpdateTimes();
+                timeTracker.UpdateTimes(DateTime.Now);
                 UpdateAccountAccesses();
                 if (DateTime.Now.Ticks - timeTracker.TimeOne.Ticks < 60)
                 {

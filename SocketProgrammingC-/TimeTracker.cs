@@ -22,26 +22,33 @@ namespace SocketProgrammingC
         }
 
 
-        public void UpdateTimes()
+        public void UpdateTimes(DateTime time)
         {
             if (timeOne == DateTime.MinValue)
             {
-                timeOne = DateTime.Now;
+                timeOne = time;
             }
             else if (timeTwo == DateTime.MinValue)
             {
-                timeTwo = DateTime.Now;
+                timeTwo = time;
             }
             else if (timeThree == DateTime.MinValue)
             {
-                timeThree = DateTime.Now;
+                timeThree = time;
             }
             else
             {
                 timeOne = timeTwo;
                 timeTwo = timeThree;
-                timeThree = DateTime.Now;
+                timeThree = time;
             }
+        }
+
+        public TimeTracker()
+        {
+            this.timeOne = DateTime.MinValue;
+            this.timeTwo = DateTime.MinValue;
+            this.timeThree = DateTime.MinValue;
         }
 
     }

@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SocketProgrammingC
 {
     class Server
     {
         /* buffer sizes -- immutable/readonly */
-        private readonly int RCVBUFSIZE = 512;     /* the receive buffer size */
-        private readonly int SNDBUFSIZE = 512;     /* the send buffer size */
+        //private readonly int RCVBUFSIZE = 512;     /* the receive buffer size */
+        //private readonly int SNDBUFSIZE = 512;     /* the send buffer size */
 
-        private int clientSocketNum;        /* the unique socket descripter # */
+        //private int clientSocketNum;        /* the unique socket descripter # */
 
-        private User[] users;
+        private List<User> users = new List<User>();
 
         private bool TransferFunds(User fromUser, Account fromAcct,
             User toUser, Account toAcct, double amount)
@@ -40,6 +41,38 @@ namespace SocketProgrammingC
                 }
             }
             return TransferFunds(fromUser, fromAcct, toUser, toAcct, amount);
+        }
+
+        public bool AddNewUser(string username, string password,
+            string confirmPassword)
+        {
+            if (password != confirmPassword) return false;
+            bool usernameExists = UsernameTaken(username);
+            if (usernameExists) return false;
+            users.Add(new User(username, password));
+            return true;
+        }
+
+        public bool DeleteUser(string username, string password)
+        {
+            foreach (var user in users)
+            {
+                if (user.Username == username && user.Password == password)
+                {
+                    users.Remove(user);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool UsernameTaken(string name)
+        {
+            foreach(var user in users)
+            {
+                if (user.Username == name) return true;
+            }
+            return false;
         }
 
         public static void Main(string[] args)
