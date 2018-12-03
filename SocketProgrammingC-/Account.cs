@@ -4,6 +4,7 @@ namespace SocketProgrammingC
     public class Account
     {
         private TimeTracker timeTracker = new TimeTracker();
+        private readonly User accountOwner;
 
         private int balance;
         public int Balance
@@ -44,11 +45,12 @@ namespace SocketProgrammingC
             get { return accountId; }
         }
 
-        public Account(int _balance, string _name, int accountId)
+        public Account(int _balance, string _name, int accountId, User accountOwner)
         {
             this.balance = _balance;
             this.name = _name;
             this.accountId = accountId;
+            this.accountOwner = accountOwner;
         }
 
         public bool WithdrawFromAccount(int amount)
