@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 
 namespace SocketProgrammingC
 {
     class Server
     {
         /* buffer sizes -- immutable/readonly */
-        //private readonly int RCVBUFSIZE = 512;     /* the receive buffer size */
-        //private readonly int SNDBUFSIZE = 512;     /* the send buffer size */
+        private readonly int RCVBUFSIZE = 512;     /* the receive buffer size */
+        private readonly int SNDBUFSIZE = 512;     /* the send buffer size */
 
-        //private int clientSocketNum;        /* the unique socket descripter # */
+        private static byte[] incomingData;
+        private static string incomingString;
 
         private List<User> users = new List<User>();
 
@@ -75,8 +79,82 @@ namespace SocketProgrammingC
             return false;
         }
 
+        private static void StartServer()
+        {
+            try
+            {
+                // Establish the local endpoint for the socket.  
+                // Dns.GetHostName returns the name of the   
+                // host running the application.  
+                IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+                IPAddress ipAddress = ipHostInfo.AddressList[0];
+                IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 80);
+
+                // Create a TCP/IP socket.  
+                Socket listener = new Socket(ipAddress.AddressFamily,
+                    SocketType.Stream, ProtocolType.Tcp);
+
+                // Bind the socket to the local endpoint and   
+                // listen for incoming connections.
+                BindAndListen(listener, localEndPoint);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        private static void BindAndListen(Socket listener,
+            IPEndPoint localEndPoint)
+        {
+            try
+            {
+                listener.Bind(localEndPoint);
+                listener.Listen(10);
+
+                // Start listening for connections.  
+                while (true)
+                {
+                    Console.WriteLine("Waiting for a connection...");
+                    // Program is suspended while waiting for an incoming connection.  
+                    Socket handler = listener.Accept();
+                    incomingString = null;
+
+                    // An incoming connection needs to be processed.  
+                    while (true)
+                    {
+                        int bytesRec = handler.Receive(incomingData);
+                        incomingString += Encoding.ASCII.GetString(incomingData, 0, bytesRec);
+                        if (incomingString.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                        {
+                            break;
+                        }
+                    }
+
+                    // Show the data on the console.  
+                    Console.WriteLine("Text received : {0}", incomingString);
+
+                    // Echo the data back to the client.  
+                    byte[] msg = Encoding.ASCII.GetBytes(incomingString);
+
+                    handler.Send(msg);
+                    handler.Shutdown(SocketShutdown.Both);
+                    handler.Close();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            Console.WriteLine("\nPress ENTER to continue...");
+            Console.Read();
+        }
+
         public static void Main(string[] args)
         {
+            StartServer();
 
         }
     }
