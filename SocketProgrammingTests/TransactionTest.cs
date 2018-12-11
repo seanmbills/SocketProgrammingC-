@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using SocketProgrammingC;
+using SocketProgrammingUtilities;
 
 namespace SocketProgrammingTests
 {
