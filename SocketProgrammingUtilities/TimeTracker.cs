@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SocketProgrammingC
+namespace SocketProgrammingUtilities
 {
     public class TimeTracker
     {

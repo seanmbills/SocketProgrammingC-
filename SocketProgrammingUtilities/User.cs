@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-namespace SocketProgrammingC
+namespace SocketProgrammingUtilities
 {
     public class User
     {

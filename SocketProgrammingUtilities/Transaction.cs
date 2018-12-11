@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace SocketProgrammingC
+namespace SocketProgrammingUtilities
 {
     public class Transaction
     {
