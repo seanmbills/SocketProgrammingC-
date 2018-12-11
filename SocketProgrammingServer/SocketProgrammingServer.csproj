@@ -6,7 +6,7 @@
     <ProjectGuid>{FDA7AF37-B004-4148-A246-A87CB05CD8A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>SocketProgrammingServer</RootNamespace>
-    <AssemblyName>SocketProgrammingC-</AssemblyName>
+    <AssemblyName>SocketProgrammingServer</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

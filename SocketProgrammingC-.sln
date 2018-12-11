@@ -1,9 +1,15 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingC-", "SocketProgrammingC-\SocketProgrammingC-.csproj", "{FDA7AF37-B004-4148-A246-A87CB05CD8A8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingTests", "SocketProgrammingTests\SocketProgrammingTests.csproj", "{EB4A5456-0678-4B34-91F6-E91278BCEDB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingClient", "SocketProgrammingClient\SocketProgrammingClient.csproj", "{ED7A2F6D-4EC2-48AB-B68B-F5907BDB690B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingUtilities", "SocketProgrammingUtilities\SocketProgrammingUtilities.csproj", "{0712099B-FE81-4D57-9ABD-8FC5AB7D46D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingMain", "SocketProgrammingMain\SocketProgrammingMain.csproj", "{63A22FBB-5EA7-474F-9E39-7FA0B32BEFA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketProgrammingServer", "SocketProgrammingServer\SocketProgrammingServer.csproj", "{FDA7AF37-B004-4148-A246-A87CB05CD8A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +17,29 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Debug|x86.ActiveCfg = Debug|x86
-		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Debug|x86.Build.0 = Debug|x86
-		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Release|x86.ActiveCfg = Release|x86
-		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Release|x86.Build.0 = Release|x86
 		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Debug|x86.Build.0 = Debug|Any CPU
 		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Release|x86.ActiveCfg = Release|Any CPU
 		{EB4A5456-0678-4B34-91F6-E91278BCEDB1}.Release|x86.Build.0 = Release|Any CPU
+		{ED7A2F6D-4EC2-48AB-B68B-F5907BDB690B}.Debug|x86.ActiveCfg = Debug|x86
+		{ED7A2F6D-4EC2-48AB-B68B-F5907BDB690B}.Debug|x86.Build.0 = Debug|x86
+		{ED7A2F6D-4EC2-48AB-B68B-F5907BDB690B}.Release|x86.ActiveCfg = Release|x86
+		{ED7A2F6D-4EC2-48AB-B68B-F5907BDB690B}.Release|x86.Build.0 = Release|x86
+		{0712099B-FE81-4D57-9ABD-8FC5AB7D46D3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0712099B-FE81-4D57-9ABD-8FC5AB7D46D3}.Debug|x86.Build.0 = Debug|Any CPU
+		{0712099B-FE81-4D57-9ABD-8FC5AB7D46D3}.Release|x86.ActiveCfg = Release|Any CPU
+		{0712099B-FE81-4D57-9ABD-8FC5AB7D46D3}.Release|x86.Build.0 = Release|Any CPU
+		{63A22FBB-5EA7-474F-9E39-7FA0B32BEFA9}.Debug|x86.ActiveCfg = Debug|x86
+		{63A22FBB-5EA7-474F-9E39-7FA0B32BEFA9}.Debug|x86.Build.0 = Debug|x86
+		{63A22FBB-5EA7-474F-9E39-7FA0B32BEFA9}.Release|x86.ActiveCfg = Release|x86
+		{63A22FBB-5EA7-474F-9E39-7FA0B32BEFA9}.Release|x86.Build.0 = Release|x86
+		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Debug|x86.ActiveCfg = Debug|x86
+		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Debug|x86.Build.0 = Debug|x86
+		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Release|x86.ActiveCfg = Release|x86
+		{FDA7AF37-B004-4148-A246-A87CB05CD8A8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.StandardHeader = $1
 	EndGlobalSection
 EndGlobal

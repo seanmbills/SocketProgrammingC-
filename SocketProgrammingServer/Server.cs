@@ -158,7 +158,6 @@ namespace SocketProgrammingServer
         public static void Main(string[] args)
         {
             StartServer();
-
         }
     }
 }
