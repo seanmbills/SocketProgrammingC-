@@ -45,8 +45,8 @@ namespace SocketProgrammingClient
                         Encoding.ASCII.GetString(bytes, 0, bytesRec));
 
                     // Release the socket.  
-                    sender.Shutdown(SocketShutdown.Both);
-                    sender.Close();
+                    //sender.Shutdown(SocketShutdown.Both);
+                    //sender.Close();
 
                 }
                 catch (ArgumentNullException ane)
@@ -71,6 +71,13 @@ namespace SocketProgrammingClient
         public static void Main(String[] args)
         {
             StartClient();
+        }
+
+        private static string command;
+        private static void ParseCommandLineArgs(String[] args)
+        {
+            command = args[0];
+
         }
     }
 }

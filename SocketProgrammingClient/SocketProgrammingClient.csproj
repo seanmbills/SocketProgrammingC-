@@ -31,5 +31,15 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SocketProgrammingServer\SocketProgrammingServer.csproj">
+      <Project>{FDA7AF37-B004-4148-A246-A87CB05CD8A8}</Project>
+      <Name>SocketProgrammingServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
